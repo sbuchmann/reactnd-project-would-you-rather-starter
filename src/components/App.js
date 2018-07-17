@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Nav from './Nav'
 import Home from './Home'
+import Error from './Error'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
@@ -36,6 +37,7 @@ class App extends Component {
                     <Route path='/question/:id' component={QuestionPage} />
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={LeaderBoard} />
+                    <Route path='/error' component={Error} />
                 </div>}
           </div>
         </Fragment>

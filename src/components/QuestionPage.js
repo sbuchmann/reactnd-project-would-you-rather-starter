@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import {handleSaveQuestion} from '../actions/questions';
 
@@ -11,6 +12,10 @@ class QuestionPage extends Component {
 
   render() {
     const { id, question, authedUser, users } = this.props;
+
+    if (!question) {
+        return <Redirect to='/error' />
+    }
 
     const noOfVotes = question.optionOne.votes.length + question.optionTwo.votes.length;
 

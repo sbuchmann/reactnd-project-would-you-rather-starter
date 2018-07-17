@@ -5,19 +5,20 @@ import Question from './Question'
 
 class Home extends Component {
   render () {
+    const {questionsUnanswered, questionsAnswered} = this.props;
     return (
       <div>
           <h3 className='center'>Would you rather</h3>
-          {this.props.questionsUnanswered.length > 0 && (
+          {questionsUnanswered.length > 0 && (
               <div>
                   <h3>Unanswered</h3>
-                  {this.props.questionsUnanswered.map((question) => (
+                  {questionsUnanswered.map((question) => (
                       <Question id={question.id} />
                   ))}
               </div>
           )}
           <h3>Answered</h3>
-          {this.props.questionsAnswered.map((question) => (
+          {questionsAnswered.map((question) => (
             <Question id={question.id} />
           ))}
       </div>
@@ -32,15 +33,23 @@ function mapStateToProps ({ questions, authedUser }) {
   ids.forEach((id) => {
       questionsArray[questionsArray.length] = questions[id];
   });
+
+  let questionsAnswered = [];
+  let questionsUnanswered = [];
+  if (authedUser) {
+      questionsAnswered = questionsArray.filter((question) => {
+          return question.optionOne.votes.includes(authedUser) ||
+              question.optionTwo.votes.includes(authedUser)
+      });
+      questionsUnanswered = questionsArray.filter((question) => {
+          return !question.optionOne.votes.includes(authedUser) &&
+              !question.optionTwo.votes.includes(authedUser)
+      })
+  }
+
   return {
-    questionsAnswered: questionsArray.filter((question) => {
-      return question.optionOne.votes.includes(authedUser) ||
-          question.optionTwo.votes.includes(authedUser)
-    }),
-    questionsUnanswered: questionsArray.filter((question) => {
-        return !question.optionOne.votes.includes(authedUser) &&
-            !question.optionTwo.votes.includes(authedUser)
-    })
+    questionsAnswered,
+    questionsUnanswered
   }
 }
 
