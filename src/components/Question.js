@@ -4,6 +4,11 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 class Question extends Component {
+  toQuestion = (e, id) => {
+    e.preventDefault();
+    this.props.history.push(`/question/${id}`)
+  };
+
   render() {
     const { question, users } = this.props;
 
@@ -26,10 +31,11 @@ class Question extends Component {
             <br /><br />
             {question.optionOne.text} <u>or</u> {question.optionTwo.text}
             <br /><br />
-            <button>View Poll</button>
+            <button
+              onClick={(e) => this.toQuestion(e, question.id)}>View Poll</button>
           </div>
         </div>
-        <div style={{clear: 'both'}}></div>
+        <div style={{clear: 'both'}} />
       </div>
     )
   }

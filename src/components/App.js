@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Nav from './Nav'
 import Home from './Home'
+import QuestionPage from './QuestionPage'
+import NewQuestion from './NewQuestion'
+import LeaderBoard from './LeaderBoard'
+import Login from './Login'
 import LoadingBar from 'react-redux-loading'
 
 import './App.css';
@@ -27,9 +31,11 @@ class App extends Component {
             {this.props.loading === true
                 ? null
                 : <div>
-                    <Route path='/' exact component={Home} />
-                    {/*<Route path='/tweet/:id' component={TweetPage} />*/}
-                    {/*<Route path='/new' component={NewTweet} />*/}
+                    <Route path='/' exact component={Login} />
+                    <Route path='/home' exact component={Home} />
+                    <Route path='/question/:id' component={QuestionPage} />
+                    <Route path='/add' component={NewQuestion} />
+                    <Route path='/leaderboard' component={LeaderBoard} />
                 </div>}
           </div>
         </Fragment>
