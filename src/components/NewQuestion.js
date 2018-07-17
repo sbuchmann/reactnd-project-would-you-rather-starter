@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { handleAddQuestion } from '../actions/questions'
-import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
@@ -31,7 +30,7 @@ class NewQuestion extends Component {
     e.preventDefault();
 
     const { optionOne, optionTwo } = this.state;
-    const { dispatch, id, authedUser } = this.props;
+    const { dispatch, authedUser } = this.props;
 
     dispatch(handleAddQuestion({
       optionOneText: optionOne,

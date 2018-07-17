@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Question from './Question'
 import {setAuthedUser} from "../actions/authedUser";
 
 class Login extends Component {
@@ -49,7 +48,7 @@ class Login extends Component {
                                 onChange={this.handleChange}>
                                 <option value=''>None</option>
                                 {this.props.users.map((user, index) => (
-                                    <option value={user.id}>{user.name}</option>
+                                    <option key={user.id} value={user.id}>{user.name}</option>
                                 ))}
                             </select>
                         </div>

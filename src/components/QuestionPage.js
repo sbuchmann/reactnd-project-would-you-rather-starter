@@ -11,7 +11,7 @@ class QuestionPage extends Component {
   };
 
   render() {
-    const { id, question, authedUser, users } = this.props;
+    const { question, authedUser, users } = this.props;
 
     if (!question) {
         return <Redirect to='/error' />
